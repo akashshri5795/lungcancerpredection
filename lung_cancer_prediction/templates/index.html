@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<title>RBC Learning</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />	
+</head>
+<body class="h-full w-screen content-box overflow-hidden">
+	<header class="max-h-1/6">
+        <div class="flex justify-between bg-violet-700 text-white p-2">
+            <div class="flex gap-2">
+                <h1><i class="fa-regular fa-envelope"></i>&nbsp;shrivastava5795@gmail.com<h1>
+                <h1><i class="fa-solid fa-phone-volume"></i>&nbsp; Helpline : 9161492606<h1>		
+            </div>
+            <div class="flex font-bold">
+                <h1><i class="fa-solid fa-location-dot"></i>&nbsp;Sector-55/56, Noida<h1>
+            </div>
+        </div>
+	    <div class="flex justify-between bg-violet-200 text-violet-800 p-2 leading-10">		
+		    <h1 class="text-xl text-violet-800 font-bold"><i class="fa-solid fa-lungs-virus"></i>&nbsp; Lung Cancer Predection</h1>
+		    <a class="mr-2 px-5 rounded-full font-bold shadow-violet-500 hover:bg-white hover:shadow-md"><i class="fa-solid fa-house"></i>&nbsp;Home</a>
+        </div>
+	</header>
+
+	<main class="bg-gradient-to-b from-violet-200 max-h-5/6 flex">            	
+		<div class="flex justify-center items-center w-1/2">
+           <div class="grid w-1/2">
+            <h1 class="text-2xl font-bold text-violet-800">Welcome to Lung Cancer Prediction with Image Processing</h1>
+            <h1 class="line-clamp-3">At Lung Cancer Prediction, we are at the forefront of utilizing advanced image processing technology to detect lung cancer at its earliest stages. Our innovative model, built on the Django framework, harnesses the power of medical imaging to provide accurate predictions and invaluable insights into your lung health.</h1>
+            <button class="text-base text-white font-medium mt-5 rounded-full p-2 px-10 bg-gradient-to-l from-violet-500 mx-auto ring-offset-4 hover:ring-2 hover:ring-violet-800 hover:bg-gradient-to-r">Login</button>
+           </div>
+        </div>
+        <div class="flex w-1/2">
+            <img src="/static/lung.svg"  height="100%" width="100%" />
+        </div>
+			
+            
+	</main>	
+	<!--Guest Login  -->
+    <dialog id="guest-dialog" class="bg-gradient-to-t from-violet-200 rounded-lg shadow-lg shadow-violet-500 focus:outline-none">
+       <div class="p-10 grid min-w-[400px] text-center text-violet-600">
+            <i class="fa-solid fa-user-tie text-5xl"></i>
+            <h1 class="py-1 text-3xl text-center font-bold">Guest Login</h1>
+      		 <form action="" method="post" class="text-left grid gap-1">             
+                <label class="font-medium text-lg mt-2">Username</label>
+                <div class="flex gap-3 bg-violet-600 rounded-l-full hover:ring-2 hover:ring-offset-2 hover:ring-violet-500">
+                    <i class="fa-solid fa-at leading-8 px-2 text-white text-lg"></i>
+                    <input type="text" name="sales_username" placeholder="Enter Username"
+                        class="flex-auto pl-2 shadow-inner shadow-gray-300 focus:outline-none" />
+                </div>
+                <label class="font-medium text-lg">Password</label>
+                <div class="flex gap-3 bg-violet-600 rounded-l-full hover:ring-2 hover:ring-offset-2 hover:ring-violet-500">
+                    <i class="fa-solid fa-key leading-8 px-2 text-white text-lg"></i>
+                    <input type="password" name="sales_passowrd" placeholder="Enter Password"
+                        class="flex-auto pl-2 shadow-inner shadow-gray-300 focus:outline-none" />
+                </div>
+                <div class="flex justify-around mt-5 text-white text-sm font-medium">
+                    <button
+                        class="bg-violet-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-violet-500">Login</button>
+                    <button
+                        class="bg-red-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-red-500" type="button" id="close-dialog-btn-guest">Close</button>
+                </div>
+            </form>
+       </div>
+    </dialog>
+    <!--  Guest Login  -->
+
+     <script>
+     	 /* guest Dialog Box*/
+        const guestModel = document.querySelector('#guest-dialog');
+        document.querySelector('.guest-btn').addEventListener("click", () => {
+            guestModel.showModal();
+        });
+        document.querySelector('#close-dialog-btn-guest').addEventListener('click', () => {
+            guestModel.close();
+        });
+         /* guest Dialog Box*/
+     </script>
+
+</body>
+</html>
