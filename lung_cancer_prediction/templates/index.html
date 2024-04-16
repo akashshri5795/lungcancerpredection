@@ -7,36 +7,58 @@
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />	
 </head>
-<body class="h-full w-screen content-box overflow-hidden">
-	<header class="max-h-1/6">
+<body class="h-full w-screen content-box overflow-y-auto overflow-x-hidden">
+	<header class="max-h-1/6 grid sticky top-0">
         <div class="flex justify-between bg-violet-700 text-white p-2">
-            <div class="flex gap-2">
+            <div class="flex gap-2 ml-5">
                 <h1><i class="fa-regular fa-envelope"></i>&nbsp;shrivastava5795@gmail.com<h1>
                 <h1><i class="fa-solid fa-phone-volume"></i>&nbsp; Helpline : 9161492606<h1>		
             </div>
-            <div class="flex font-bold">
+            <div class="flex font-bold mr-5">
                 <h1><i class="fa-solid fa-location-dot"></i>&nbsp;Sector-55/56, Noida<h1>
             </div>
         </div>
-	    <div class="flex justify-between bg-violet-200 text-violet-800 p-2 leading-10">		
-		    <h1 class="text-xl text-violet-800 font-bold"><i class="fa-solid fa-lungs-virus"></i>&nbsp; Lung Cancer Predection</h1>
+	    <div class="flex justify-between bg-violet-200 text-violet-800 p-2">		
+		    <h1 class="text-xl text-violet-800 font-bold ml-5"><i class="fa-solid fa-lungs-virus"></i>&nbsp; Lung Cancer Predection</h1>
 		    <a class="mr-2 px-5 rounded-full font-bold shadow-violet-500 hover:bg-white hover:shadow-md"><i class="fa-solid fa-house"></i>&nbsp;Home</a>
         </div>
 	</header>
 
-	<main class="bg-gradient-to-b from-violet-200 max-h-5/6 flex">            	
-		<div class="flex justify-center items-center w-1/2">
-           <div class="grid w-1/2">
-            <h1 class="text-2xl font-bold text-violet-800">Welcome to Lung Cancer Prediction with Image Processing</h1>
-            <h1 class="line-clamp-3">At Lung Cancer Prediction, we are at the forefront of utilizing advanced image processing technology to detect lung cancer at its earliest stages. Our innovative model, built on the Django framework, harnesses the power of medical imaging to provide accurate predictions and invaluable insights into your lung health.</h1>
-            <button class="text-base text-white font-medium mt-5 rounded-full p-2 px-10 bg-gradient-to-l from-violet-500 mx-auto ring-offset-4 hover:ring-2 hover:ring-violet-800 hover:bg-gradient-to-r">Login</button>
-           </div>
+	<main class="bg-gradient-to-b from-violet-200 max-h-5/6">   
+        <div class="flex">        	
+            <div class="flex justify-center items-center w-1/2">
+            <div class="grid justify-center items-center w-1/2">
+                <h1 class="text-3xl font-bold text-violet-800">Welcome to AI based Lung Cancer Predictor</h1>
+                <h1 class="line-clamp-3">At Lung Cancer Prediction, we are at the forefront of utilizing advanced image processing technology to detect lung cancer at its earliest stages. Our innovative model, built on the Django framework, harnesses the power of medical imaging to provide accurate predictions and invaluable insights into your lung health.</h1>
+                <button class="text-base text-white font-medium mt-5 rounded-full p-2 px-10 bg-gradient-to-l from-violet-500 mx-auto ring-offset-4 hover:ring-2 hover:ring-violet-800 hover:bg-gradient-to-r">Login</button>
+            </div>
+            </div>
+            <div class="flex w-1/2">
+                <img src="/static/home-pic/lung.svg"  height="100%" width="100%" />
+            </div>
+        </div> 
+        <div class="flex">
+            <div class="flex justify-center items-center w-1/2">
+                <img src="/static/home-pic/lung-ct-scan.svg"  height="50%" width="50%" />
+            </div>
+            <div class="flex justify-center items-center w-1/2">
+                <div class="grid w-1/2">
+                    <h1 class="text-3xl font-bold text-violet-800">Why Image Processing Matters</h1>
+                    <h1 class="line-clamp-3">Medical imaging, such as CT scans, plays a crucial role in the early detection of lung cancer. By analyzing intricate details within these images, our model can identify subtle abnormalities that may indicate the presence of cancerous cells. Early detection is key to improving treatment outcomes and saving lives.</h1>
+                </div>
+            </div>           
+        </div>			
+        <div class="grid">           
+            <div class="flex justify-center items-center p-5"> 
+                <h1 class="text-4xl font-bold text-violet-800 border-b-2 border-bouble border-violet-500">Lung Cancer Developement Process</h1>
+            </div>  
+            <div class="flex justify-center items-center">
+                <img src="/static/home-pic/why-cancer.svg" width="60%"  />
+            </div>         
         </div>
-        <div class="flex w-1/2">
-            <img src="/static/lung.svg"  height="100%" width="100%" />
-        </div>
-			
-            
+        <footer class="flex justify-center items-center bg-violet-800 text-white">
+            <h1 class="p-2 text-base font-bold">AI based Lung Cancer Predictor</h1>
+        </footer>
 	</main>	
 	<!--Guest Login  -->
     <dialog id="guest-dialog" class="bg-gradient-to-t from-violet-200 rounded-lg shadow-lg shadow-violet-500 focus:outline-none">
