@@ -6,8 +6,9 @@ from lung_cancer_prediction import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.homePage),
-    path('about-us/', views.aboutUS),
+    path('', views.homePage,name='home_page'),   
+    path('save-account/',views.saveAccount, name='save_account'),
+    path('login-user/', views.LoginUser, name='login_user')
 ]
 
 if settings.DEBUG:

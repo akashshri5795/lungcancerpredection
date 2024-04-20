@@ -1,0 +1,93 @@
+{% extends 'header.html' %}
+{% block mainblock %}   
+	<main class="bg-gradient-to-b from-violet-200 max-h-5/6"> 
+        <div class="flex justify-between mx-auto p-2  font-medium">
+            <span class="px-2 py-1 bg-white ring-offset-2 hover:ring-2 hover:ring-violet-600 rounded-full" id="patient-btn">Add Patient</span>
+            <span class="mr-5 text-lg">Hi! User</span>
+        </div>  
+       <table class="table-fixed p-5 w-screen text-center">
+        <thead>
+            <tr class="border-b-2 border-violet-500 leading-8">
+            <th>Patient ID<th>
+            <th>First Name<th>
+            <th>Last Name<th>
+            <th>Age<th>
+            <th>Gender<th>
+            <th>Contact<th>
+            <th>Address<th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in patient %}
+           
+            {% endfor %}
+            <tr>
+                <td>Patient ID<td>
+                <td>First Name<td>
+                <td>Last Name<td>
+                <td>Age<td>
+                <td>Gender<td>
+                <td>Contact<td>
+                <td>Address<td>
+            </tr>
+        </tbody>
+       </table>
+	</main>	
+
+    <!-- Register  -->
+    <dialog id="patient-dialog" class="bg-gradient-to-t from-violet-200 rounded-lg shadow-lg shadow-violet-500 focus:outline-none">
+        <div class="p-10 grid min-w-[400px] text-center text-violet-600">
+             <i class="fa-solid fa-user-tie text-5xl"></i>
+             <h1 class="py-1 text-3xl text-center font-bold">Add Patient </h1>
+                <form action="" method="post" class="text-left grid gap-1">     
+                
+                 <label class="font-medium text-lg mt-2">First Name</label>
+                 <input type="text" name="first_name" placeholder="Enter First Name" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" required />
+
+                 <label class="font-medium text-lg mt-2">Last Name</label>
+                 <input type="text" name="last_name" placeholder="Enter Last Name" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none"  required />
+
+                 <label class="font-medium text-lg mt-2">Age</label>
+                 <input type="number" name="age" min="0" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" required />
+                
+                 <label class="font-medium text-lg mt-2">Gender</label>
+                 <select name="gender" required>
+                    <option value="" disabled selected>--Choose Gender--</option>
+                    <option value="M" disabled selected>Male</option>
+                    <option value="F" disabled selected>Female</option>
+                 </select>
+                
+                 <label class="font-medium text-lg mt-2">Contact</label>                
+                 <input type="text" name="contact" placeholder="Enter Name" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" />
+                                             
+                 <label class="font-medium text-lg">Address</label>
+                 <textarea name="address" placeholder="Enter Address" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" />
+                
+                 <div class="flex justify-around mt-5 text-white text-sm font-medium">
+                     <button
+                         class="bg-violet-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-violet-500">Create</button>
+                     <button
+                         class="bg-red-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-red-500" type="button" id="close-dialog-btn-patient">Close</button>
+                 </div>
+             </form>
+        </div>
+     </dialog>
+     <!-- Login  --> 
+
+     
+     <script>
+        /* Login Dialog Box*/
+      const Patientbox = document.querySelector('#patient-dialog');
+      console.log(Patientbox)
+      document.querySelector('#patient-btn').addEventListener("click", function(){
+          Patientbox.showModal();
+      });
+      document.querySelector('#close-dialog-btn-patient').addEventListener("click", function(){
+          Patientbox.close();
+      });
+       /*Login Dialog Box*/
+      
+   </script>
+
+   
+   {% endblock %}
