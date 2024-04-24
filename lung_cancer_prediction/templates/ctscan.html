@@ -5,47 +5,38 @@
             <div>
                 <button class="px-2 py-1 bg-white ring-offset-2 hover:ring-2 hover:ring-violet-600 rounded-full patient-btn">Add Patient</button>
                 <button class="px-2 py-1 bg-white ring-offset-2 hover:ring-2 hover:ring-violet-600 rounded-full upload-btn">Upload CT Scan</button>
-                <a href="{% url "show_ctscan" %}"> <button class="px-2 py-1 bg-white ring-offset-2 hover:ring-2 hover:ring-violet-600 rounded-full upload-btn">Show CT Scan</button>
-                </a>
-                
             </div>
             <span class="mr-5 text-lg">Hi! User</span>
         </div>  
-       <table class="table-auto p-5 w-screen text-center">
-        <thead>
-            <tr class="border-b-2 border-violet-500 leading-8">
-                <th>Patient ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Contact</th>
-                <th>Address</th>
-                <th class="border-l-2 border-violet-500">Actions</th>
-            </tr>
-        </thead>
-        <tbody>       
-            {% for data in patient %}
-             
-                    <tr class="border border-violet-300">
-                        <td>{{data.patient_id}}</td>
-                        <td>{{data.first_name}}</td>
-                        <td>{{data.last_name}}</td>
-                        <td>{{data.age}}</td>
-                        <td>{{data.gender}}</td>
-                        <td>{{data.contact}}</td>
-                        <td>{{data.address}}</td>
-                        <td class="border-l border-violet-300">
-                            Edit | Delete
-                        </td>
+       <div class="w-screen text-center">
+        <table class="table-auto">
+            <thead>
+                <tr class="border-b-2 border-violet-500">
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                    <th>Upload Date & Time</th>
+                    <th>CTScan Image</th>                   
+                   
+                </tr>
+            </thead>
+            <tbody>           
+                {% for data in ctscans %}              
+                        <tr class="border border-violet-300">
+                            <td class="w-24">{{data.patient_id_id}}</td>
+                            <td class="w-32">{{data.patient_id.first_name}} {{data.patient_id.last_name}}</td>
+                            <td class="w-60">{{data.upload_date}}</td>  
+                            <td class="w-32">
+                                <img src="/media/{{data.upload_image}}" height="100px" />
+                            </td>                      
                        
-                    </tr>
-            {% endfor %}
-        </tbody>
-       </table>
+                        </tr>
+                {% endfor %}
+            </tbody>
+           </table>
+       </div>
 	</main>	
 
-    <dialog id="my-dialog" class="bg-gradient-to-t from-violet-200 rounded-lg shadow-lg shadow-violet-500 focus:outline-none">
+    {% comment %} <dialog id="my-dialog" class="bg-gradient-to-t from-violet-200 rounded-lg shadow-lg shadow-violet-500 focus:outline-none">
         <div class="py-5 px-10 grid text-center text-violet-600">
             <i class="fa-solid fa-user-injured text-6xl"></i>
             <h1 class="py-3 text-3xl text-center font-bold">Add Patient </h1>
@@ -111,34 +102,7 @@
             </form>
         </div>
     </dialog>
-
-    <dialog id="showCTscan-dialog" class="bg-gradient-to-t from-violet-200 rounded-lg shadow-lg shadow-violet-500 focus:outline-none">
-        <div class="py-5 px-10 grid text-center text-violet-600">
-            <i class="fa-regular fa-image text-6xl"></i>
-            <h1 class="py-3 text-3xl text-center font-bold">Upload CT-scan </h1>
-            <form action="{% url "upload_ctscan" %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="grid gap-1 text-left">
-                <label class="font-medium text-lg mt-2">Patient Name</label>  
-                <select name="patient_id" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" required>
-                    <option value="" disabled selected>--Select--</option>
-                    {% for data in patient %}
-                        <option value="{{data.patient_id}}">{{data.first_name}} {{data.last_name}}</option>
-                    {% endfor %}
-                 </select>    
-                 <label class="font-medium text-lg mt-2">CT Scan</label>
-                 <input type="file" name="upload_ct_scan" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none bg-white" />
-
-                </div>
-                <div class="flex justify-center items-center gap-2 mt-5 text-white text-sm font-medium">
-                    <button
-                        class="bg-violet-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-violet-500">Upload</button>
-                    <button
-                        class="bg-red-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-red-500" type="button" id="close-dialog-btn-showctscan">Close</button>
-                </div>
-            </form>
-        </div>
-    </dialog>  
+   
    
      <script>
         const PatientBox= document.querySelector('#my-dialog');
@@ -156,6 +120,6 @@
         document.querySelector('#close-dialog-btn-upload').addEventListener('click', function(){
             uploadBox.close();
         });
-     </script>
+     </script> {% endcomment %}
 
      {% endblock %}
