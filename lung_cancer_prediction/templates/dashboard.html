@@ -1,0 +1,163 @@
+{% extends 'header.html' %}
+{% block mainblock %}
+
+	<main class="bg-gradient-to-b from-violet-200 max-h-5/6">
+        {{ prediction }} 
+        <div class="flex justify-between p-2 font-medium">
+            <div>
+                <button class="px-2 py-1 bg-white ring-offset-2 hover:ring-2 hover:ring-violet-600 rounded-full patient-btn">Add Patient</button>
+                <button class="px-2 py-1 bg-white ring-offset-2 hover:ring-2 hover:ring-violet-600 rounded-full upload-btn">Upload CT Scan</button>
+                <a href="{% url "show_ctscan" %}"> <button class="px-2 py-1 bg-white ring-offset-2 hover:ring-2 hover:ring-violet-600 rounded-full upload-btn">Show CT Scan</button>
+                </a>
+                
+            </div>
+            <span class="mr-5 text-lg">Hi! User</span>
+        </div>  
+       <table class="table-auto p-5 w-screen text-center">
+        <thead>
+            <tr class="border-b-2 border-violet-500 leading-8">
+                <th>Patient ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Contact</th>
+                <th>Address</th>
+                <th class="border-l-2 border-violet-500">Actions</th>
+            </tr>
+        </thead>
+        <tbody>       
+            {% for data in patient %}
+             
+                    <tr class="border border-violet-300">
+                        <td>{{data.patient_id}}</td>
+                        <td>{{data.first_name}}</td>
+                        <td>{{data.last_name}}</td>
+                        <td>{{data.age}}</td>
+                        <td>{{data.gender}}</td>
+                        <td>{{data.contact}}</td>
+                        <td>{{data.address}}</td>
+                        <td class="border-l border-violet-300">
+                            Edit | Delete
+                        </td>
+                       
+                    </tr>
+            {% endfor %}
+        </tbody>
+       </table>
+	</main>	
+
+    <dialog id="my-dialog" class="bg-gradient-to-t from-violet-200 rounded-lg shadow-lg shadow-violet-500 focus:outline-none">
+        <div class="py-5 px-10 grid text-center text-violet-600">
+            <i class="fa-solid fa-user-injured text-6xl"></i>
+            <h1 class="py-3 text-3xl text-center font-bold">Add Patient </h1>
+            <form action="{% url "save_patient" %}" method="post">
+                {% csrf_token %}
+                <div class="grid gap-1 text-left">
+                <label class="font-medium text-lg mt-2">First Name</label>  
+                <input type="text" name="first_name" placeholder="Enter First Name" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" required /> 
+
+                <label class="font-medium text-lg mt-2">Last Name</label>
+                <input type="text" name="last_name" placeholder="Enter Last Name" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none"  required />
+
+                <label class="font-medium text-lg mt-2">Age</label>
+                <input type="number" name="age" min="0" placeholder="Enter Age" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" required />
+
+                <label class="font-medium text-lg mt-2">Gender</label>
+                <select name="gender"  class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" required>
+                   <option value="" disabled selected>--Select--</option>
+                   <option value="M">Male</option>
+                   <option value="F">Female</option>
+                </select>
+
+                <label class="font-medium text-lg mt-2">Contact</label>                
+                <input type="text" name="contact" placeholder="Enter contact" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" />
+
+                <label class="font-medium text-lg">Address</label>
+                <textarea name="address" placeholder="Enter Address" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none"></textarea>
+                </div>
+                <div class="flex justify-center items-center gap-2 mt-5 text-white text-sm font-medium">
+                    <button
+                        class="bg-violet-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-violet-500">Create</button>
+                    <button
+                        class="bg-red-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-red-500" type="button" id="close-dialog-btn-patient">Close</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <dialog id="upload-dialog" class="bg-gradient-to-t from-violet-200 rounded-lg shadow-lg shadow-violet-500 focus:outline-none">
+        <div class="py-5 px-10 grid text-center text-violet-600">
+            <i class="fa-regular fa-image text-6xl"></i>
+            <h1 class="py-3 text-3xl text-center font-bold">Upload CT-scan </h1>
+            <form action="{% url "upload_ctscan" %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="grid gap-1 text-left">
+                <label class="font-medium text-lg mt-2">Patient Name</label>  
+                <select name="patient_id" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" required>
+                    <option value="" disabled selected>--Select--</option>
+                    {% for data in patient %}
+                        <option value="{{data.patient_id}}">{{data.first_name}} {{data.last_name}}</option>
+                    {% endfor %}
+                 </select>    
+                 <label class="font-medium text-lg mt-2">CT Scan</label>
+                 <input type="file" name="upload_ct_scan" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none bg-white" />
+
+                </div>
+                <div class="flex justify-center items-center gap-2 mt-5 text-white text-sm font-medium">
+                    <button
+                        class="bg-violet-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-violet-500">Upload</button>
+                    <button
+                        class="bg-red-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-red-500" type="button" id="close-dialog-btn-upload">Close</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <dialog id="showCTscan-dialog" class="bg-gradient-to-t from-violet-200 rounded-lg shadow-lg shadow-violet-500 focus:outline-none">
+        <div class="py-5 px-10 grid text-center text-violet-600">
+            <i class="fa-regular fa-image text-6xl"></i>
+            <h1 class="py-3 text-3xl text-center font-bold">Upload CT-scan </h1>
+            <form action="{% url "upload_ctscan" %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="grid gap-1 text-left">
+                <label class="font-medium text-lg mt-2">Patient Name</label>  
+                <select name="patient_id" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none" required>
+                    <option value="" disabled selected>--Select--</option>
+                    {% for data in patient %}
+                        <option value="{{data.patient_id}}">{{data.first_name}} {{data.last_name}}</option>
+                    {% endfor %}
+                 </select>    
+                 <label class="font-medium text-lg mt-2">CT Scan</label>
+                 <input type="file" name="upload_ct_scan" class="p-1 pl-2 shadow-inner shadow-gray-300 focus:outline-none bg-white" />
+
+                </div>
+                <div class="flex justify-center items-center gap-2 mt-5 text-white text-sm font-medium">
+                    <button
+                        class="bg-violet-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-violet-500">Upload</button>
+                    <button
+                        class="bg-red-600 rounded-full py-1 px-10 hover:ring-2 hover:ring-offset-2 hover:ring-red-500" type="button" id="close-dialog-btn-showctscan">Close</button>
+                </div>
+            </form>
+        </div>
+    </dialog>  
+   
+     <script>
+        const PatientBox= document.querySelector('#my-dialog');
+        document.querySelector('.patient-btn').addEventListener('click', function(){
+            PatientBox.showModal();
+        });
+        document.querySelector('#close-dialog-btn-patient').addEventListener('click', function(){
+            PatientBox.close();
+        });
+
+        const uploadBox= document.querySelector('#upload-dialog');
+        document.querySelector('.upload-btn').addEventListener('click', function(){
+            uploadBox.showModal();
+        });
+        document.querySelector('#close-dialog-btn-upload').addEventListener('click', function(){
+            uploadBox.close();
+        });
+     </script>
+
+     {% endblock %}
